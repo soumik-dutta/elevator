@@ -1,5 +1,7 @@
 package com.example.elevator;
 
 public interface ElevatorInterface {
-    ElevatorCarImpl getElevatorCar(int floor, int destivation);
+    ElevatorCarInterface getElevatorCar(ElevatorCarState state);
+    ElevatorCarInterface setDestination(ElevatorCarInterface carInterface, int destination);
+
 }

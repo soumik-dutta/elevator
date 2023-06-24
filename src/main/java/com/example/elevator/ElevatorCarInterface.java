@@ -11,8 +11,10 @@ public interface ElevatorCarInterface {
 
     ElevatorCarImpl getDeepCopy();
 
-    ElevatorCarImpl setDestinationAndState(int destination, ElevatorCarState state);
+    void setState(ElevatorCarState state);
 
-    void reachedDestination();
+    void go();
+
+    void setDestination(int destination);
 
 }

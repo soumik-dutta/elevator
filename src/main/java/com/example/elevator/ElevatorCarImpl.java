@@ -14,6 +14,7 @@ public class ElevatorCarImpl implements ElevatorCarInterface{
     private int destinationFloor = 0;
     private final String name;
 
+
     public ElevatorCarImpl(int currentFloor, ElevatorCarState state, int destinationFloor, String name) {
         this.currentFloor = currentFloor;
         this.state = state;
@@ -21,19 +22,11 @@ public class ElevatorCarImpl implements ElevatorCarInterface{
         this.name = name;
     }
 
-
-    @Override
-    public ElevatorCarImpl setDestinationAndState(int destination, ElevatorCarState state) {
-        this.setDestinationFloor(destination);
-        this.setState(state);
-        return this;
-    }
-
     public int getCurrentFloor() {
         return currentFloor;
     }
 
-    public void reachedDestination(){
+    public void go(){
         this.setCurrentFloor(this.destinationFloor);
         this.setState(ElevatorCarState.UNASSIGNED);
     }
@@ -64,4 +57,10 @@ public class ElevatorCarImpl implements ElevatorCarInterface{
     public int hashCode() {
         return Objects.hash(getName());
     }
+
+    @Override
+    public void setDestination(int destination) {
+        this.setDestinationFloor(destination);
+    }
+
 }
