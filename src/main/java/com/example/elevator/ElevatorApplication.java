@@ -26,7 +26,8 @@ public class ElevatorApplication {
 
 		var car = elevatorInterface.getElevatorCar(ElevatorCarState.UP);
 		// enter destination
-		elevatorInterface.setDestination(car, 6).go();
+		elevatorInterface.setDestination(car, 6);
+		elevatorInterface.go(car);
 
 	}
 

@@ -23,4 +23,10 @@ public class ElevatorImpl implements ElevatorInterface{
         elevatorCarManagerInterface.setDestination(carInterface, destination);
         return carInterface;
     }
+
+
+    @Override
+    public void go(ElevatorCarInterface carInterface) {
+        elevatorCarManagerInterface.reachedDestination(carInterface);
+    }
 }

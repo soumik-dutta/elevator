@@ -75,11 +75,11 @@ public class ElevatorCarManagerImpl implements ElevatorCarManagerInterface {
             Thread.sleep(10000);
             log.info("destination reached ..{}", car.getDestination());
             var preciousState = car.getCarState();
-            car.go();
             // shuffle the state map
             if (elevatorStateMap.get(preciousState).remove(car)) {
                 elevatorStateMap.get(car.getCarState()).add(car);
             }
+            car.go();
             log.info("Reached destination {} : {}", car.getName(), car.getDestination());
         } catch (InterruptedException e) {
             log.warn("thread interrupted");
