@@ -12,6 +12,7 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ForkJoinPool;
+import java.util.stream.Collectors;
 
 @Setter
 @Getter
@@ -95,5 +96,12 @@ public class ElevatorCarManagerImpl implements ElevatorCarManagerInterface {
     @Override
     public void setDestination(ElevatorCarInterface elevatorCar, int destination) {
         elevatorNameMap.get(elevatorCar.getName()).setDestination(destination);
+    }
+
+    @Override
+    public Map<String, Integer> displayElevatorFloor() {
+        return elevatorNameMap.entrySet()
+                .stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, k->k.getValue().getDestination(), (a, b)->a ));
     }
 }

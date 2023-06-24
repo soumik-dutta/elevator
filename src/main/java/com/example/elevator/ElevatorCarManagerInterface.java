@@ -13,4 +13,6 @@ public interface ElevatorCarManagerInterface {
 
     void reachedDestination(ElevatorCarInterface elevatorCar);
 
+    Map<String, Integer> displayElevatorFloor();
+
 }

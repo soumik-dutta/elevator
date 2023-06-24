@@ -3,6 +3,8 @@ package com.example.elevator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Map;
+
 public class ElevatorImpl implements ElevatorInterface{
 
     private ElevatorCarManagerInterface elevatorCarManagerInterface = new ElevatorCarManagerImpl();
@@ -26,5 +28,10 @@ public class ElevatorImpl implements ElevatorInterface{
     @Override
     public void go(ElevatorCarInterface carInterface) {
         elevatorCarManagerInterface.reachedDestination(carInterface);
+    }
+
+    @Override
+    public Map<String, Integer> getCurrentFloor() {
+        return elevatorCarManagerInterface.displayElevatorFloor();
     }
 }
