@@ -68,7 +68,8 @@ public class ElevatorCarManagerImpl implements ElevatorCarManagerInterface {
         return null;
     }
 
-    public void reachedDestination(ElevatorCarInterface car) {
+    public void reachedDestination(ElevatorCarInterface elevatorCar) {
+        var car = elevatorNameMap.get(elevatorCar.getName());
         try {
             Thread.sleep(10000);
             log.info("destination reached ..{}", car.getDestination());
@@ -94,6 +95,5 @@ public class ElevatorCarManagerImpl implements ElevatorCarManagerInterface {
     @Override
     public void setDestination(ElevatorCarInterface elevatorCar, int destination) {
         elevatorNameMap.get(elevatorCar.getName()).setDestination(destination);
-        elevatorCar = elevatorNameMap.get(elevatorCar.getName());
     }
 }
