@@ -21,7 +21,7 @@ public class ElevatorCarManagerImpl implements ElevatorCarManagerInterface {
 
 
     private ConcurrentHashMap<String, ElevatorCarInterface> elevatorNameMap;
-    private static ConcurrentHashMap<ElevatorCarState, List<ElevatorCarInterface>> elevatorStateMap;
+    private static ConcurrentHashMap<ElevatorCarState, List<ElevatorCarInterface>> elevatorStateMap = new ConcurrentHashMap<>();
 
     private ExecutorService service = new ForkJoinPool();
 
@@ -57,6 +57,12 @@ public class ElevatorCarManagerImpl implements ElevatorCarManagerInterface {
         }
 
         return elevatorCar.get().getDeepCopy();
+    }
+
+    @Override
+    public void addElevator(ElevatorCarImpl elevatorCar) {
+        elevatorNameMap.put(elevatorCar.getName(), elevatorCar);
+        elevatorStateMap.get(ElevatorCarState.UNASSIGNED).add(elevatorCar);
     }
 
     @Override
