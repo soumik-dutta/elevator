@@ -3,11 +3,9 @@ package com.example.elevator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
 public class ElevatorImpl implements ElevatorInterface{
 
-    @Autowired
-    private ElevatorCarManagerInterface elevatorCarManagerInterface;
+    private ElevatorCarManagerInterface elevatorCarManagerInterface = new ElevatorCarManagerImpl();
 
     @Override
     public ElevatorCarInterface getElevatorCar(ElevatorCarState state) {

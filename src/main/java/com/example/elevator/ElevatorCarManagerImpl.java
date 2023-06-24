@@ -20,7 +20,7 @@ import java.util.concurrent.ForkJoinPool;
 public class ElevatorCarManagerImpl implements ElevatorCarManagerInterface {
 
 
-    private ConcurrentHashMap<String, ElevatorCarInterface> elevatorNameMap;
+    private ConcurrentHashMap<String, ElevatorCarInterface> elevatorNameMap= new ConcurrentHashMap<>();
     private static ConcurrentHashMap<ElevatorCarState, List<ElevatorCarInterface>> elevatorStateMap = new ConcurrentHashMap<>();
 
     private ExecutorService service = new ForkJoinPool();
@@ -30,6 +30,8 @@ public class ElevatorCarManagerImpl implements ElevatorCarManagerInterface {
         elevatorStateMap.put(ElevatorCarState.DOWN, new ArrayList<>());
         elevatorStateMap.put(ElevatorCarState.UNASSIGNED, new ArrayList<>());
     }
+
+
 
 
     @Override
@@ -42,6 +44,7 @@ public class ElevatorCarManagerImpl implements ElevatorCarManagerInterface {
                 var stillStateCar = elevatorStateMap.get(ElevatorCarState.UNASSIGNED).get(0);
                 // set the destication and state
                 stillStateCar.setState(state);
+                elevatorStateMap.get(state).add(stillStateCar);
                 return stillStateCar.getDeepCopy();
             }
         } else {
@@ -59,11 +62,6 @@ public class ElevatorCarManagerImpl implements ElevatorCarManagerInterface {
         return elevatorCar.get().getDeepCopy();
     }
 
-    @Override
-    public void addElevator(ElevatorCarImpl elevatorCar) {
-        elevatorNameMap.put(elevatorCar.getName(), elevatorCar);
-        elevatorStateMap.get(ElevatorCarState.UNASSIGNED).add(elevatorCar);
-    }
 
     @Override
     public Map<ElevatorCarState, ElevatorCarInterface> getByState() {
@@ -89,11 +87,13 @@ public class ElevatorCarManagerImpl implements ElevatorCarManagerInterface {
     @Override
     public void addElevator(ElevatorCarInterface elevatorCar) {
         // adding new elevator car
+        elevatorNameMap.put(elevatorCar.getName(), elevatorCar);
         elevatorStateMap.get(ElevatorCarState.UNASSIGNED).add(elevatorCar);
     }
 
     @Override
     public void setDestination(ElevatorCarInterface elevatorCar, int destination) {
         elevatorNameMap.get(elevatorCar.getName()).setDestination(destination);
+        elevatorCar = elevatorNameMap.get(elevatorCar.getName());
     }
 }

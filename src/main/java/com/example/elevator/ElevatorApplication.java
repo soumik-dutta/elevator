@@ -8,15 +8,13 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication
 public class ElevatorApplication {
 
-	@Autowired
-	private static ElevatorInterface elevatorInterface;
+
 
 	@Autowired
-	ConfigurableApplicationContext applicationContext;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ElevatorApplication.class, args);
-
+		ElevatorInterface elevatorInterface = new ElevatorImpl();
 		// setting up the elevator
 		elevatorInterface.addElevator(new ElevatorCarImpl(0,ElevatorCarState.UNASSIGNED, 0, "A"));
 		elevatorInterface.addElevator(new ElevatorCarImpl(0,ElevatorCarState.UNASSIGNED, 0, "B"));

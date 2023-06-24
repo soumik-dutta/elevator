@@ -13,6 +13,4 @@ public interface ElevatorCarManagerInterface {
 
     void reachedDestination(ElevatorCarInterface elevatorCar);
 
-    void addElevator(ElevatorCarImpl elevatorCar);
-
 }
