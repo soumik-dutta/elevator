@@ -13,6 +13,7 @@ public class ElevatorCarImpl implements ElevatorCarInterface{
     private ElevatorCarState state = ElevatorCarState.UNASSIGNED;
     private int destinationFloor = 0;
     private final String name;
+    private Boolean inTransit = false;
 
 
     public ElevatorCarImpl(int currentFloor, ElevatorCarState state, int destinationFloor, String name) {
@@ -59,8 +60,15 @@ public class ElevatorCarImpl implements ElevatorCarInterface{
     }
 
     @Override
-    public void setDestination(int destination) {
-        this.setDestinationFloor(destination);
+    public boolean setDestination(int destination) {
+        if (inTransit){
+            return false;
+        }
+        synchronized (this){
+            this.inTransit = true;
+            this.setDestinationFloor(destination);
+            return true;
+        }
     }
 
 }

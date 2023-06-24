@@ -94,8 +94,8 @@ public class ElevatorCarManagerImpl implements ElevatorCarManagerInterface {
     }
 
     @Override
-    public void setDestination(ElevatorCarInterface elevatorCar, int destination) {
-        elevatorNameMap.get(elevatorCar.getName()).setDestination(destination);
+    public boolean setDestination(ElevatorCarInterface elevatorCar, int destination) {
+        return elevatorNameMap.get(elevatorCar.getName()).setDestination(destination);
     }
 
     @Override

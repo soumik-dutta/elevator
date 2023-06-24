@@ -9,7 +9,7 @@ public interface ElevatorCarManagerInterface {
 
     void addElevator(ElevatorCarInterface elevatorCar);
 
-    void setDestination(ElevatorCarInterface elevatorCar, int destination);
+    boolean setDestination(ElevatorCarInterface elevatorCar, int destination);
 
     void reachedDestination(ElevatorCarInterface elevatorCar);
 

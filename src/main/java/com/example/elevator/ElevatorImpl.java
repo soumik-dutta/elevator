@@ -20,8 +20,14 @@ public class ElevatorImpl implements ElevatorInterface{
 
     @Override
     public ElevatorCarInterface setDestination(ElevatorCarInterface carInterface, int destination) {
-        elevatorCarManagerInterface.setDestination(carInterface, destination);
-        return carInterface;
+        var tryForNewElevatorCar = elevatorCarManagerInterface.setDestination(carInterface, destination);
+        ElevatorCarInterface elevatorCar = carInterface;
+        while (!tryForNewElevatorCar){
+            elevatorCar = getElevatorCar(carInterface.getCarState());
+            tryForNewElevatorCar = elevatorCarManagerInterface.setDestination(elevatorCar, destination);
+
+        }
+        return elevatorCar;
     }
 
 

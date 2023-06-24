@@ -15,6 +15,6 @@ public interface ElevatorCarInterface {
 
     void go();
 
-    void setDestination(int destination);
+    boolean setDestination(int destination);
 
 }
